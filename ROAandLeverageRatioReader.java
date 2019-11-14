@@ -3,10 +3,10 @@ import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class RoaReader {
+public class ROAandLeverageRatioReader {
     private String filename;
 
-    public RoaReader(String filename) {
+    public ROAandLeverageRatioReader(String filename) {
         this.filename = filename;
     }
 
@@ -14,6 +14,7 @@ public class RoaReader {
         File file = new File(filename);
         Scanner sc = new Scanner(file);
         HashMap<String , Double> topTwenty = new HashMap<>();
+        HelperMethods helpMethods = new HelperMethods();
         sc.nextLine(); //skip header row
         //read data
         while (sc.hasNextLine()) {
@@ -28,12 +29,17 @@ public class RoaReader {
                     doubleTemp += Double.parseDouble(piecesOfLine[i].substring(0,piecesOfLine[i].length()-1));
 //                    System.out.println(Double.parseDouble(piecesOfLine[i].substring(0,piecesOfLine[i].length()-1)));
 //                    System.out.println(doubleTemp);
-
                 }
             }
 //            System.out.println(doubleTemp/counter);
             topTwenty.put(piecesOfLine[1], doubleTemp/counter);
             System.out.println(topTwenty);
+        }
+        String[] sTemp = new String[20];
+        for (int i = 0; i < 20; i++) {
+            String key = helpMethods.findKeyWithMaxValue(topTwenty);
+            sTemp[i] = key +" <-> "+ topTwenty.remove(key);
+            System.out.println(sTemp[i]);
         }
     }
 }
