@@ -2,6 +2,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.junit.jupiter.api.Test;
 
@@ -10,13 +11,15 @@ class SharpeRatioAnalysisTest {
 	private ArrayList<Double> annRet = new ArrayList<Double>();
 	private ArrayList<Double> annStd = new ArrayList<Double>();
 	private ArrayList<Double> annSR = new ArrayList<Double>();
+	private HashMap<String, Double> chosenStockWithSR = new HashMap<String, Double>();
+	
 	
 	public SharpeRatioAnalysisTest() {
 		
 		annRet.add(0.279); annRet.add(0.1559); annRet.add(0.1606); annRet.add(0.1253); annRet.add(0.1059);
 		annRet.add(0.0387); annRet.add(0.1088); annRet.add(0.0407); annRet.add(0.1977); annRet.add(0.1663);
 		annRet.add(0.3372); annRet.add(0.1832); annRet.add(0.1062); annRet.add(0.1488); annRet.add(0.248);
-		annRet.add(0.096); annRet.add(0.1358); annRet.add(-0.2479); annRet.add(0.0519); annRet.add(0.163);
+		annRet.add(0.096); annRet.add(0.1358); annRet.add(-0.2497); annRet.add(0.0519); annRet.add(0.163);
 		annRet.add(0.177); annRet.add(0.2562); annRet.add(0.2007); annRet.add(0.0143); annRet.add(0.0523);
 		annRet.add(0.1887); annRet.add(0.1445); annRet.add(0.1743); annRet.add(0.148); annRet.add(0.0943);
 		annRet.add(0.1475); annRet.add(0.1238); annRet.add(0.2028); annRet.add(0.156); annRet.add(0.1002);
@@ -48,6 +51,26 @@ class SharpeRatioAnalysisTest {
 		annSR.add(0.0249); annSR.add(0.633); annSR.add(0.1934); annSR.add(0.5438); annSR.add(0.3617);
 		annSR.add(0.5683); annSR.add(0.1969); annSR.add(0.4857); annSR.add(-0.0201); annSR.add(0.4482);
 		annSR.add(0.3792); annSR.add(0.5127);
+		
+		chosenStockWithSR.put("AVGO US Equity", 1.1584);
+		chosenStockWithSR.put("JKHY US Equity", 0.9128);
+		chosenStockWithSR.put("AAPL US Equity", 0.8741);
+		chosenStockWithSR.put("FISV US Equity", 0.8277);
+		chosenStockWithSR.put("INTU US Equity", 0.821);
+		chosenStockWithSR.put("ACN US Equity", 0.7428);
+		chosenStockWithSR.put("FIS US Equity", 0.7321);
+		chosenStockWithSR.put("BR US Equity", 0.7179);
+		chosenStockWithSR.put("CRM US Equity", 0.7154);
+		chosenStockWithSR.put("FTNT US Equity", 0.6958);
+		chosenStockWithSR.put("ANSS US Equity", 0.6957);
+		chosenStockWithSR.put("HPE US Equity", 0.6473);
+		chosenStockWithSR.put("MSCI US Equity", 0.6414);
+		chosenStockWithSR.put("SNPS US Equity", 0.633);
+		chosenStockWithSR.put("MSFT US Equity", 0.6305);
+		chosenStockWithSR.put("TXN US Equity", 0.5683);
+		chosenStockWithSR.put("CERN US Equity", 0.5467);
+		chosenStockWithSR.put("SWKS US Equity", 0.5438);
+		chosenStockWithSR.put("ADBE US Equity", 0.5437);
 	}
 
 	@Test
@@ -57,11 +80,19 @@ class SharpeRatioAnalysisTest {
 		ArrayList<Double> a = sra.getAnnualRet();
 		ArrayList<Double> b = sra.getAnnualStd();
 		ArrayList<Double> c = sra.getAnnualSR();
+		HashMap<String, Double> d = sra.getChosenStockWithSR();
 		
 		for (int i = 0; i < a.size(); i++) {
 			assertEquals(annRet.get(i), a.get(i));
 			assertEquals(annStd.get(i), b.get(i));
+		}
+		
+		for (int i = 0; i < c.size(); i++) {
 			assertEquals(annSR.get(i), c.get(i));
+		}
+		
+		for (String s : chosenStockWithSR.keySet()) {
+			assertEquals(chosenStockWithSR.get(s), d.get(s));
 		}
 	}
 
