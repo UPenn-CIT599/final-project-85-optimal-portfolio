@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -33,13 +34,21 @@ public class ROAandLeverageRatioReader {
             }
 //            System.out.println(doubleTemp/counter);
             topTwenty.put(piecesOfLine[1], doubleTemp/counter);
-            System.out.println(topTwenty);
+//            System.out.println(topTwenty);
         }
+        sc.close();
+        File out = new File("results.txt");
+        PrintWriter pw = new PrintWriter(out);
+
         String[] sTemp = new String[20];
         for (int i = 0; i < 20; i++) {
             String key = helpMethods.findKeyWithMaxValue(topTwenty);
-            sTemp[i] = key +" <-> "+ topTwenty.remove(key);
+//            sTemp[i] = key +" <-> "+ topTwenty.remove(key);
+            sTemp[i] = "" + topTwenty.remove(key);
             System.out.println(sTemp[i]);
+            pw.println(sTemp[i]);
         }
+        pw.flush();
+        pw.close();
     }
 }
