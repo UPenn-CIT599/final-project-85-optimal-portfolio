@@ -7,6 +7,7 @@ import java.util.Set;
 public class HelperMethods {
     /**
      * For ROA computation
+     *
      * @param aHashMap
      * @return
      */
@@ -26,12 +27,13 @@ public class HelperMethods {
 
     /**
      * For Leverage ratio computation
+     *
      * @param aHashMap
      * @return
      */
     public String findKeyWithMinValue(HashMap<String, Double> aHashMap) {
         Set<String> loopSet = aHashMap.keySet();
-        double currentMinValue = 0;
+        double currentMinValue = 100;
         String keyWithMinValue = "";
         for (String key : loopSet) {
             double currentValue = aHashMap.get(key);
