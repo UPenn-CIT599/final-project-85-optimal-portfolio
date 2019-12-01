@@ -5,7 +5,9 @@ import java.io.FileNotFoundException;
  */
 public class Runner {
     public static void main(String[] args) throws FileNotFoundException {
-        ROAandLeverageRatioReader currentReader = new ROAandLeverageRatioReader();
-        currentReader.run();
+        ReadAndCalculateROA myROA = new ReadAndCalculateROA();
+        myROA.run();
+        ReadAndCalculateLeverageRatio myLeverageRatio = new ReadAndCalculateLeverageRatio();
+        myLeverageRatio.run();
     }
 }
