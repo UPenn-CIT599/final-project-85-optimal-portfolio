@@ -34,7 +34,6 @@ public class Reader {
             String[] piecesOfLine = line.split(",");
             //skip last line (it's SPX index line)
             if (piecesOfLine[0].equals("SPX Index")) {
-                System.out.println("continue reached: line is " + line);
                 continue;
             }
             for (int i = 1; i < piecesOfLine.length; i++) {
