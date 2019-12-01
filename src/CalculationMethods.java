@@ -64,7 +64,7 @@ public class CalculationMethods {
 		}
 		System.out.println();
 	}
-	
+
 	// this method is used to print int[] array list
 	public void printArray(int[] values){
 		for (int i = 0; i < values.length; i++){
@@ -72,7 +72,7 @@ public class CalculationMethods {
 		}
 		System.out.println();
 	}
-	
+
 	// this method is used to print double[][] array list
 	public void printBoard(double[][] values) {
 		for(int i = 0; i < values.length; i++) {
@@ -82,7 +82,7 @@ public class CalculationMethods {
 			System.out.println("");
 		}
 	}
-	
+
 	// this method is used to get the minimum length of all returns series
 	public int getMinLength(ArrayList<String> stockList, HashMap<String, ArrayList<Double>> returns) {
 		int min = 0;
@@ -95,6 +95,38 @@ public class CalculationMethods {
 		// cm.printArray(retSeriesLength);
 		// System.out.println(min);
 		return min;
+	}
+
+	// this method is used to calculate the average of an double[] values for correlation calculation
+	// this method can also be used to calculate average of ROA and leverage ratio
+	public double calculateAverage(double[] values) {
+		double average = 0.0000;
+		for(int i = 0; i < values.length; i++) {
+			average += values[i];
+		}
+		average = average / values.length;
+		return (double) average;
+	}
+
+	// this method is used to calculate the sumproduct of two series of double[] values for correlation calculation
+	// be careful that the size of the double x and double y must be equal
+	public double calculateSumProduct(double[] x, double[] y) {
+		double sumproduct = 0.0000;
+		for(int i = 0; i < x.length; i++) {
+			sumproduct += x[i] * y[i];
+		}
+		return (double) sumproduct;
+	}
+
+	// this method is used to calculate the standard deviation of an double[] values for correlation calculation
+	public double calculateStd(double[] values, double average) {
+		double Std = 0.0000;
+		for(int i = 0; i < values.length; i++) {
+			Std += Math.pow(values[i] - average, 2);
+		}
+		Std = Std / (values.length - 1);
+		Std = Math.pow(Std, 0.5);
+		return (double) Std;
 	}
 	
 }

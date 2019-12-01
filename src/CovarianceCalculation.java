@@ -26,26 +26,55 @@ public class CovarianceCalculation {
 	
 	// get the correlation matrix of all stocks
 	int sizevalue = stockList.size();
-	double[][] corr = new double[sizevalue][sizevalue];
-
-	public double[][] getCorr() {
+	
+	double[][] covMatrix = new double[sizevalue][sizevalue];
+	
+	public double[][] getCovMatrix() {
+		// calculate average of each series returns
 		double[] mean = new double[sizevalue];
-//		for(int i = 0; i < sizevalue; i++) {
-//			mean[i] = cm.calculateAverage(retData[i]);
-//		}
-		return corr;
+		for(int i = 0; i < mean.length; i++) {
+			mean[i] = cm.calculateAverage(retData[i]);
+		}
+		
+		// calculate correlation matrix of all series returns
+		double[][] corr = new double[sizevalue][sizevalue];
+		for(int i = 0; i < sizevalue; i++) {
+			for(int j = 0; j < sizevalue; j++) {
+				corr[i][j] = (cm.calculateSumProduct(retData[i], retData[j]) - minvalue * mean[i] * mean[j]) / (minvalue * cm.calculateStd(retData[i], mean[i]) * cm.calculateStd(retData[j], mean[j]));
+			}
+		}
+		
+		// calculate covariance matrix of all series returns
+		double[][] covMatrix = new double[sizevalue][sizevalue];
+		for(int i = 0; i < sizevalue; i++) {
+			for(int j = 0; j < sizevalue; j++) {
+				covMatrix[i][j] = cm.calculateStd(retData[i], mean[i]) * cm.calculateStd(retData[j], mean[j]) * corr[i][j];
+			}
+		}
+		return covMatrix;
 	}
 
 	public static void main(String[] args) {
 		
 		CovarianceCalculation test = new CovarianceCalculation();
 		// output the results
-		System.out.println(test.stockList);
-		System.out.println(test.returns);
+//		System.out.println(test.stockList);
+//		System.out.println(test.returns);
 		test.cm.printBoard(test.getRetData());
-		System.out.println(test.getRetData().length);
-		System.out.println(test.getRetData()[1].length);
-		test.cm.printArray(test.getRetData()[1]);
+//		System.out.println(test.getRetData().length);
+//		System.out.println(test.getRetData()[1].length);
+//		test.cm.printArray(test.getRetData()[1]);
+		System.out.println();
+		
+		double[] mean = new double[19];
+		for(int i = 0; i < mean.length; i++) {
+			mean[i] = test.cm.calculateAverage(test.getRetData()[i]);
+		}
+		test.cm.printArray(mean);
+		
+		System.out.println();
+		
+		test.cm.printBoard(test.getCovMatrix());
 
 	}
 }
