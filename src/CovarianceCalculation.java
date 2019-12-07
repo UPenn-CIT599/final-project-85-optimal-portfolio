@@ -40,7 +40,7 @@ public class CovarianceCalculation {
 		double[][] corr = new double[sizevalue][sizevalue];
 		for(int i = 0; i < sizevalue; i++) {
 			for(int j = 0; j < sizevalue; j++) {
-				corr[i][j] = (cm.calculateSumProduct(retData[i], retData[j]) - minvalue * mean[i] * mean[j]) / (minvalue * cm.calculateStd(retData[i], mean[i]) * cm.calculateStd(retData[j], mean[j]));
+				corr[i][j] = (cm.sumProduct(retData[i], retData[j]) - minvalue * mean[i] * mean[j]) / (minvalue * cm.calculateStd(retData[i]) * cm.calculateStd(retData[j]));
 			}
 		}
 		
@@ -48,7 +48,7 @@ public class CovarianceCalculation {
 		double[][] covMatrix = new double[sizevalue][sizevalue];
 		for(int i = 0; i < sizevalue; i++) {
 			for(int j = 0; j < sizevalue; j++) {
-				covMatrix[i][j] = cm.calculateStd(retData[i], mean[i]) * cm.calculateStd(retData[j], mean[j]) * corr[i][j];
+				covMatrix[i][j] = cm.calculateStd(retData[i]) * cm.calculateStd(retData[j]) * corr[i][j];
 			}
 		}
 		return covMatrix;
@@ -61,8 +61,8 @@ public class CovarianceCalculation {
 //		System.out.println(test.stockList);
 //		System.out.println(test.returns);
 		test.cm.printBoard(test.getRetData());
-//		System.out.println(test.getRetData().length);
-//		System.out.println(test.getRetData()[1].length);
+		System.out.println(test.getRetData().length); // this gives height or row of a matrix
+		System.out.println(test.getRetData()[1].length); // this gives wideness or column of a matrix
 //		test.cm.printArray(test.getRetData()[1]);
 		System.out.println();
 		
