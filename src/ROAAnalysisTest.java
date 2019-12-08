@@ -2,14 +2,14 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * test class for ROA 
+ */
 class ROAAnalysisTest {
-	/**
-	 * link class and retrieve results
-	 */
+	
 	private ArrayList<Double> average = new ArrayList<Double>();
 
 	/**
