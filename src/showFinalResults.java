@@ -38,7 +38,7 @@ public class showFinalResults {
 
 		PrintWriter pw = new PrintWriter(filename);
 
-		String fileContents1 = "The final constructed optimal portfolio is composed of the follwoing 10 stocks after comprehensively considering Sharpe ratio, return on assets, and leverage ratio:";
+		String fileContents1 = "The final constructed optimal portfolio is composed of the following 10 stocks after comprehensively considering Sharpe ratio, return on assets, and leverage ratio:";
 		pw.println(fileContents1);
 
 		String fileContents2 = "";
