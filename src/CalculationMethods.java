@@ -1,8 +1,14 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 
 public class CalculationMethods {
 
-	// this method is used to calculate the annualized geometric return of an double ArrayList
+	/**
+	 * this method is used to calculate the annualized geometric return of an double ArrayList
+	 * @param values
+	 * @return
+	 */
 	public double calculateAnnRet(ArrayList<Double> values) {
 		double annRet = 1.0000;
 		for(int i = 0; i < values.size(); i++) {
@@ -12,8 +18,11 @@ public class CalculationMethods {
 		return (double) annRet;
 	}
 
-	// this method is used to calculate the average of an double ArrayList
-	// this method can also be used to calculate average of ROA and leverage ratio
+	/**
+	 * this method is used to calculate the average of an double ArrayList
+	 * @param values
+	 * @return
+	 */
 	public double calculateAverage(ArrayList<Double> values) {
 		double average = 0.0000;
 		for(int i = 0; i < values.size(); i++) {
@@ -23,7 +32,12 @@ public class CalculationMethods {
 		return (double) average;
 	}
 
-	// this method is used to calculate the annualized standard deviation of an double ArrayList
+	/**
+	 * this method is used to calculate the annualized standard deviation of an double ArrayList
+	 * @param values
+	 * @param average
+	 * @return
+	 */
 	public double calculateAnnStd(ArrayList<Double> values, double average) {
 		double annStd = 0.0000;
 		for(int i = 0; i < values.size(); i++) {
@@ -34,10 +48,12 @@ public class CalculationMethods {
 		return (double) annStd;
 	}
 
-	// this method is used to sort numbers sorted by Arrays.sort() from highest to lowest
-	// as the number sorted by Arrays.sort() is from lowest to highest
-	// this method can also be used to sort the average of ROA from highest to lowest
-	// this method does not need to be used for average leverage ratio, as the lower leverage ratio, the better
+	/**
+	 * this method is used to sort numbers sorted by Arrays.sort() from highest to lowest
+	 * as the number sorted by Arrays.sort() is from lowest to highest
+	 * @param values
+	 * @return
+	 */
 	public double[] newSort(double[] values) {
 		if(values.length % 2 == 0) {
 			for(int i = 0; i < values.length / 2; i++) {
@@ -56,8 +72,10 @@ public class CalculationMethods {
 		return values;
 	}
 
-	// this method is used to print double[] array list
-	// this method also need to be used in sorting ROA and leverage ratio for outputing the sorting results
+	/**
+	 * this method is used to print double[] array list
+	 * @param values
+	 */
 	public void printArray(double[] values){
 		for (int i = 0; i < values.length; i++){
 			System.out.print(values[i] + " ");
@@ -65,7 +83,10 @@ public class CalculationMethods {
 		System.out.println();
 	}
 
-	// this method is used to print int[] array list
+	/**
+	 * this method is used to print int[] array list
+	 * @param values
+	 */ 
 	public void printArray(int[] values){
 		for (int i = 0; i < values.length; i++){
 			System.out.print(values[i] + " ");
@@ -73,7 +94,21 @@ public class CalculationMethods {
 		System.out.println();
 	}
 
-	// this method is used to print double[][] array list
+	/**
+	 * this method is used to print String[] array list
+	 * @param values
+	 */
+	public void printArray(String[] values){
+		for (int i = 0; i < values.length; i++){
+			System.out.print(values[i] + " ");
+		}
+		System.out.println();
+	}
+
+	/**
+	 * this method is used to print double[][] array list
+	 * @param values
+	 */
 	public void printBoard(double[][] values) {
 		for(int i = 0; i < values.length; i++) {
 			for(int j = 0; j < values[1].length; j++) {
@@ -83,7 +118,12 @@ public class CalculationMethods {
 		}
 	}
 
-	// this method is used to get the minimum length of all returns series for correlation and covariance calculation
+	/**
+	 * this method is used to get the minimum length of all returns series
+	 * @param stockList
+	 * @param returns
+	 * @return
+	 */
 	public int getMinLength(ArrayList<String> stockList, HashMap<String, ArrayList<Double>> returns) {
 		int min = 0;
 		int[] retSeriesLength = new int[returns.size()];
@@ -92,13 +132,14 @@ public class CalculationMethods {
 		}
 		Arrays.sort(retSeriesLength);
 		min = retSeriesLength[0];
-		// cm.printArray(retSeriesLength);
-		// System.out.println(min);
 		return min;
 	}
 
-	// this method is used to calculate the average of an double[] values for correlation and covariance calculation
-	// this method can also be used to calculate average of ROA and leverage ratio
+	/**
+	 * this method is used to calculate the average of an double[] values
+	 * @param values
+	 * @return
+	 */
 	public double calculateAverage(double[] values) {
 		double average = 0.0000;
 		for(int i = 0; i < values.length; i++) {
@@ -108,7 +149,11 @@ public class CalculationMethods {
 		return (double) average;
 	}
 
-	// this method is used to calculate the annualized geometric return of an double[] array
+	/**
+	 * this method is used to calculate the annualized geometric return of an double[] array
+	 * @param values
+	 * @return
+	 */
 	public double calculateAnnRet(double[] values) {
 		double annRet = 1.0000;
 		for(int i = 0; i < values.length; i++) {
@@ -117,8 +162,12 @@ public class CalculationMethods {
 		annRet = Math.pow(annRet, (double) 12 / values.length) - 1;
 		return (double) annRet;
 	}
-
-	// this method is used to calculate the standard deviation of an double[] values for correlation and covariance calculation
+	
+	/**
+	 * this method is used to calculate the standard deviation of an double[] values
+	 * @param values
+	 * @return
+	 */
 	public double calculateStd(double[] values) {
 		double average = calculateAverage(values);
 		double Std = 0.0000;
@@ -130,9 +179,13 @@ public class CalculationMethods {
 		return (double) Std;
 	}
 
-	// this method is used to calculate the sumproduct of two series of double[] values for correlation and covariance calculation
-	// this method is also used to calculate portfolio return
-	// be careful that the size of the double x and double y must be equal
+	/**
+	 * this method is used to calculate the sumproduct of two series of double[] values
+	 * be careful that the size of the double x and double y must be equal
+	 * @param x
+	 * @param y
+	 * @return
+	 */
 	public double sumProduct(double[] x, double[] y) {
 		double sumproduct = 0.0000;
 		for(int i = 0; i < x.length; i++) {
@@ -142,7 +195,7 @@ public class CalculationMethods {
 	}
 
 	/**
-	 * this method is used to get returns data of stocks for calculating covariance
+	 * this method is used to get returns data of all stocks in a double[][] format
 	 * @param stockList
 	 * @param returns
 	 * @return
@@ -161,19 +214,27 @@ public class CalculationMethods {
 		return returnsData;
 	}
 
-	// this method is used to calculate the covariance matrix of returns for calculating portfolio standard deviation
+	/**
+	 * this method is used to calculate the covariance matrix of returns of all the stocks
+	 * @param returnsData
+	 * @return
+	 */
 	public double[][] calculateCovriance(double[][] returnsData){
 
 		int rowValue = returnsData.length;
 		int columnValue = returnsData[1].length;
 
-		// calculate average of each series returns
+		/**
+		 * calculate average of each series returns
+		 */
 		double[] mean = new double[rowValue];
 		for(int i = 0; i < mean.length; i++) {
 			mean[i] = calculateAverage(returnsData[i]);
 		}
-
-		// calculate correlation matrix of all series returns
+		
+		/**
+		 * calculate correlation matrix of all series returns
+		 */
 		double[][] corr = new double[rowValue][rowValue];
 		for(int i = 0; i < rowValue; i++) {
 			for(int j = 0; j < rowValue; j++) {
@@ -181,17 +242,23 @@ public class CalculationMethods {
 			}
 		}
 
-		// calculate covariance matrix of all series returns
+		/**
+		 * calculate covariance matrix of all series returns
+		 */
 		double[][] covMatrix = new double[rowValue][rowValue];
 		for(int i = 0; i < rowValue; i++) {
 			for(int j = 0; j < rowValue; j++) {
-				covMatrix[i][j] = calculateStd(returnsData[i]) * calculateStd(returnsData[j]) * corr[i][j];
+				covMatrix[i][j] = 12 * calculateStd(returnsData[i]) * calculateStd(returnsData[j]) * corr[i][j];
 			}
 		}
 		return covMatrix;
 	}
 
-	// this method is used to transform a double[][] matrix for calculating portfolio standard deviation
+	/**
+	 * this method is used to transform a double[][] matrix for matrix multiplication
+	 * @param Matrix
+	 * @return
+	 */
 	public double[][] transformMatrix(double[][] Matrix){
 		double[][] transformedMatrix = new double[Matrix[1].length][Matrix.length];
 		for(int i = 0; i < transformedMatrix.length; i++) {
@@ -202,7 +269,11 @@ public class CalculationMethods {
 		return transformedMatrix;
 	}
 
-	// this method is used to transform a double[] array matrix for calculating portfolio standard deviation
+	/**
+	 * this method is used to transform a double[] matrix for matrix multiplication
+	 * @param Matrix
+	 * @return
+	 */
 	public double[][] transformMatrix(double[] Matrix){
 		double[][] transformedMatrix = new double[Matrix.length][1];
 		for(int i = 0; i < transformedMatrix.length; i++) {
@@ -211,10 +282,14 @@ public class CalculationMethods {
 		return transformedMatrix;
 	}
 
-	// this method is specifically used to multiply a double[] array matrix with a double[][] matrix
-	// for calculating portfolio standard deviation
-	// the wideness of the double[] array matrix and the height of the double[][] matrix must be equal
-	// besides, the wideness of the double[][] matrix and the height of the double[][] matrix must be equal
+	/**
+	 * this method is specifically used to multiply a double[] array matrix with a double[][] matrix
+	 * the wideness of the double[] array matrix and the height of the double[][] matrix must be equal
+	 * besides, the wideness of the double[][] matrix and the height of the double[][] matrix must be equal
+	 * @param matrix1
+	 * @param matrix2
+	 * @return
+	 */
 	public double[] multiplyMatrix(double[] matrix1, double[][] matrix2) {
 		double[] matrix = new double[matrix2[1].length];
 		double[][] newMatrix2 = transformMatrix(matrix2);
@@ -224,25 +299,39 @@ public class CalculationMethods {
 		return matrix;
 	}
 
-	// this method is specifically used to get the final portfolio standard deviation
-	// this matrix version is a double[] array matrix * double[][] matrix * the same first double[] array matrix
-	// the wideness of the double[] array matrix and the height of the double[][] matrix must be equal
-	// besides, the wideness of the double[][] matrix and the height of the double[][] matrix must be equal
+	/**
+	 * this method is specifically used to get the final portfolio standard deviation
+	 * this matrix version is a double[] array matrix * double[][] matrix * the same first double[] array matrix
+	 * the wideness of the double[] array matrix and the height of the double[][] matrix must be equal
+	 * besides, the wideness of the double[][] matrix and the height of the double[][] matrix must be equal
+	 * @param weight
+	 * @param covariance
+	 * @return
+	 */
 	public double calculatePortStd(double[] weight, double[][] covariance) {
 		double portStd = 0.0000;
 		double[] temp = multiplyMatrix(weight, covariance);
 		portStd = sumProduct(temp, weight);
-		return portStd;
+		return (double) Math.pow(portStd, 0.5);
 	}
 
-	// this method is used to calculate the final portfolio return
-	// the size of double[] weight and the size of double[] annRet must be equal
+	/**
+	 * this method is used to calculate the final portfolio return
+	 * the size of double[] weight and the size of double[] annRet must be equal
+	 * @param weight
+	 * @param annRet
+	 * @return
+	 */
 	public double calculatePortRet(double[] weight, double[] annRet) {
 		double portRet = sumProduct(weight, annRet);
 		return (double) portRet;
 	}
 
-	// this method is to generate a double[] array with n random numbers with their sum to be one
+	/**
+	 * this method is to generate a double[] array with n random numbers with their sum to be one
+	 * @param n
+	 * @return
+	 */
 	public double[] generateRandomNumber(int n) {
 		double[] weights = new double[n];
 		double temp = 0.0000;
@@ -253,8 +342,12 @@ public class CalculationMethods {
 		weights[n - 1] = 1 - temp;
 		return weights;
 	}
-	
-	// this method is used to calculate the sum of a double[] array
+
+	/**
+	 * this method is used to calculate the sum of a double[] array
+	 * @param values
+	 * @return
+	 */
 	public double calculateSum(double[] values) {
 		double sum = 0.0000;
 		for(int i = 0; i < values.length; i++) {
@@ -263,3 +356,4 @@ public class CalculationMethods {
 		return sum;
 	}
 }
+

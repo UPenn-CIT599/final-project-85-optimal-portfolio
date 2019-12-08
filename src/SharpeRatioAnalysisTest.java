@@ -7,13 +7,17 @@ import java.util.HashMap;
 import org.junit.jupiter.api.Test;
 
 class SharpeRatioAnalysisTest {
-	
+	/**
+	 * link class and retrieve results
+	 */
 	private ArrayList<Double> annRet = new ArrayList<Double>();
 	private ArrayList<Double> annStd = new ArrayList<Double>();
 	private ArrayList<Double> annSR = new ArrayList<Double>();
 	private HashMap<String, Double> chosenStockWithSR = new HashMap<String, Double>();
 	
-	
+	/**
+	 * input the correct results
+	 */
 	public SharpeRatioAnalysisTest() {
 		
 		annRet.add(0.279); annRet.add(0.1559); annRet.add(0.1606); annRet.add(0.1253); annRet.add(0.1059);
@@ -73,6 +77,9 @@ class SharpeRatioAnalysisTest {
 		chosenStockWithSR.put("ADBE US Equity", 0.5437);
 	}
 
+	/**
+	 * test the results
+	 */
 	@Test
 	void testMain() {
 		
@@ -97,3 +104,4 @@ class SharpeRatioAnalysisTest {
 	}
 
 }
+

@@ -3,12 +3,21 @@ import java.io.*;
 
 public class DataReader {
 
+	/**
+	 * set up stock data HashMap and stock list
+	 */
 	HashMap<String, ArrayList<Double>> Data = new HashMap<String, ArrayList<Double>>();
 	ArrayList<String> stockList = new ArrayList<String>();
 
+	/**
+	 * read csv files data into Java
+	 * @param fileName
+	 */
 	public DataReader(String fileName) {
 
-		// exception handling
+		/**
+		 * exception handling
+		 */
 		if(fileName == null) {
 			throw new IllegalArgumentException();
 		}
@@ -30,23 +39,17 @@ public class DataReader {
 						temp = Double.parseDouble(piecesOfInfo[i]);
 						cast.add(temp);
 					} catch (NumberFormatException e){
-						// temp = 0.0000;
-						// cast.add(temp);
 					}
 				}
 				Data.put(stockTicker,cast);
 			}
+			scanner.close();
 
-			// retrieve data information
-			// System.out.println(stockList);
-			// for(int i = 0; i < stockList.size(); i++) {
-			// System.out.print(Data.get(stockList.get(i)));
-			// System.out.println();
-			// }
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 	}
 
 	public HashMap<String, ArrayList<Double>> getData() {
@@ -56,9 +59,5 @@ public class DataReader {
 	public ArrayList<String> getStockList() {
 		return stockList;
 	}
-
-	//	public static void main(String[] args) {
-	//		DataReader dr = new DataReader("leverageratio.csv");
-	//	}
 
 }
