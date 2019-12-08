@@ -68,16 +68,16 @@ public class showFinalResults {
 		String fileContents10 = "";
 		pw.println(fileContents10);
 
-		String fileContents11 = "The optimal portfolio expeccted annual return is:";
+		String fileContents11 = "The optimal portfolio expected annual return is:";
 		pw.println(fileContents11);
 
-		String fileContents12 = Double.toString(portRet);
+		String fileContents12 = "" + portRet;
 		pw.println(fileContents12);
 
 		String fileContents13 = "";
 		pw.println(fileContents13);
 
-		String fileContents14 = "The optimal portfolio expeccted annual standard deviation is:";
+		String fileContents14 = "The optimal portfolio expected annual standard deviation is:";
 		pw.println(fileContents14);
 
 		String fileContents15 = Double.toString(portStd);
@@ -86,7 +86,7 @@ public class showFinalResults {
 		String fileContents16 = "";
 		pw.println(fileContents16);
 
-		String fileContents17 = "The optimal portfolio expected annual Sharpe ratio (this means excess return per unit of investment risk) is:";
+		String fileContents17 = "The optimal portfolio expected annual Sharpe ratio (excess return per unit of investment risk) is:";
 		pw.println(fileContents17);
 
 		String fileContents18 = Double.toString(portSharpeRatio);
