@@ -3,7 +3,6 @@ import java.io.PrintWriter;
 
 /**
  * write results to a file
- * @author
  *
  */
 public class showFinalResults {
@@ -22,7 +21,7 @@ public class showFinalResults {
 
 	/**
 	 * output the result to an external file
-	 * @throws FileNotFoundException 
+	 * @throws FileNotFoundException
 	 */
 	public showFinalResults() throws FileNotFoundException {
 
@@ -39,7 +38,7 @@ public class showFinalResults {
 
 		PrintWriter pw = new PrintWriter(filename);
 
-		String fileContents1 = "The final constructed optimal portfolio is composed of the follwoing 10 stocks after comprehensively consideing Sharpe ratio, return on assets, and leverage ratio:";
+		String fileContents1 = "The final constructed optimal portfolio is composed of the follwoing 10 stocks after comprehensively considering Sharpe ratio, return on assets, and leverage ratio:";
 		pw.println(fileContents1);
 
 		String fileContents2 = "";
@@ -99,9 +98,9 @@ public class showFinalResults {
 
 	/**
 	 * print out the results
-	 * 
+	 *
 	 * @param args
-	 * @throws FileNotFoundException 
+	 * @throws FileNotFoundException
 	 */
 	public static void main(String[] args) throws FileNotFoundException {
 
