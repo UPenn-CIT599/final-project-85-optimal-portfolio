@@ -1,29 +1,22 @@
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
-/**
- * link class and methods and retrieve results
- */
 public class showFinalResults {
-	private SimulationAndGetOptimalPortfolio sop = new SimulationAndGetOptimalPortfolio();
-	private CalculationMethods mc = new CalculationMethods();
 
-	private String[] stockList = new String[sop.getStockList().size()];
-	private double[] weights = new double[sop.getStockList().size()];
-	private double portRet;
-	private double portStd;
-	private double portSharpeRatio;
-	private String[] descriptions = {
-			"The final constructed optimal portfolio is composed of the following 10 stocks after comprehensively considering Sharpe ratio, return on assets, and leverage ratio:",
-			"After 1,000 simulations, the following results were obtained:",
-			"The capital weights were assigned to the 10 stocks as follows (the sum is 1):",
-			"The optimal portfolio expected annual return is:",
-			"The optimal portfolio expected annual standard deviation is:",
-			"The optimal portfolio expected annual Sharpe ratio (excess return per unit of investment risk) is:" };
+	/**
+	 * link class and methods and retrieve results
+	 */
+	SimulationAndGetOptimalPortfolio sop = new SimulationAndGetOptimalPortfolio();
+	CalculationMethods mc = new CalculationMethods();
+
+	String[] stockList = new String[sop.getStockList().size()];
+	double[] weights = new double[sop.getStockList().size()];
+	double portRet;
+	double portStd;
+	double portSharpeRatio;
 
 	/**
 	 * output the result to an external file
-	 * 
 	 * @throws FileNotFoundException
 	 */
 	public showFinalResults() throws FileNotFoundException {
@@ -32,77 +25,117 @@ public class showFinalResults {
 			stockList[i] = sop.getStockList().get(i);
 		}
 
-		weights = sop.getWeights()[sop.getFinalLocation()];
-		portRet = sop.getPortRet()[sop.getFinalLocation()];
-		portStd = sop.getPortStd()[sop.getFinalLocation()];
-		portSharpeRatio = sop.getPortSharpeRatio()[sop.getFinalLocation()];
-	}
+		weights = sop.getFinalWeights();
+		portRet = sop.getFinalPortRet();
+		portStd = sop.getFinalPortStd();
+		portSharpeRatio = sop.getFinalPortSharpeRatio();
 
-	/**
-	 * this method will write results to a text file
-	 * @throws FileNotFoundException
-	 */
-	public void writeToFile(String filename) throws FileNotFoundException {
+		String filename = "results.txt";
+
 		PrintWriter pw = new PrintWriter(filename);
-		pw.println(descriptions[0]);
-		for (String printStr : stockList) {
-			pw.println(printStr);
-		}
-		pw.println(""); // add space
-		pw.println(descriptions[1]);
-		pw.println(""); // add space
-		pw.println(descriptions[2]);
-		for (double printThis : weights) {
-			pw.println(printThis);
-		}
-		pw.println(""); // add space
-		pw.println(descriptions[3]);
-		pw.println(portRet);
-		pw.println(""); // add space
-		pw.println(descriptions[4]);
-		pw.println(portStd);
-		pw.println(""); // add space
-		pw.println(descriptions[5]);
-		pw.println(portSharpeRatio);
+
+		String fileContents1 = "The final constructed optimal portfolio is composed of the following 10 stocks after comprehensively considering Sharpe ratio, return on assets, and leverage ratio:";
+		pw.println(fileContents1);
+
+		String fileContents2 = "";
+		pw.println(fileContents2);
+
+		String fileContents3 = stockList.toString();
+		pw.println(fileContents3);
+
+		String fileContents4 = "";
+		pw.println(fileContents4);
+
+		String fileContents5 = "We simulated 1,000 times. After that the results are described as follows.";
+		pw.println(fileContents5);
+
+		String fileContents6 = "";
+		pw.println(fileContents6);
+
+		String fileContents7 = "The capital weights assigned for the 10 stocks are shown as follows (the capital weights sum is one):";
+		pw.println(fileContents7);
+
+		String fileContents8 = "";
+		pw.println(fileContents8);
+
+		String fileContents9 = weights.toString();
+		pw.println(fileContents9);
+
+		String fileContents10 = "";
+		pw.println(fileContents10);
+
+		String fileContents11 = "The optimal portfolio expected annual return is:";
+		pw.println(fileContents11);
+
+		String fileContents12 = "" + portRet;
+		pw.println(fileContents12);
+
+		String fileContents13 = "";
+		pw.println(fileContents13);
+
+		String fileContents14 = "The optimal portfolio expected annual standard deviation is:";
+		pw.println(fileContents14);
+
+		String fileContents15 = Double.toString(portStd);
+		pw.println(fileContents15);
+
+		String fileContents16 = "";
+		pw.println(fileContents16);
+
+		String fileContents17 = "The optimal portfolio expected annual Sharpe ratio (excess return per unit of investment risk) is:";
+		pw.println(fileContents17);
+
+		String fileContents18 = Double.toString(portSharpeRatio);
+		pw.println(fileContents18);
+
 		pw.flush();
 		pw.close();
-	}
-	/**
-	 * this method will write results to console screen
-	 */
-	public void writeToConsole() {
-		System.out.println(descriptions[0]);
-		for (String printStr : stockList) {
-			System.out.println(printStr);
-		}
-		System.out.println(""); // add space
-		System.out.println(descriptions[1]);
-		System.out.println(""); // add space
-		System.out.println(descriptions[2]);
-		for (double printThis : weights) {
-			System.out.println(printThis);
-		}
-		System.out.println(""); // add space
-		System.out.println(descriptions[3]);
-		System.out.println(portRet);
-		System.out.println(""); // add space
-		System.out.println(descriptions[4]);
-		System.out.println(portStd);
-		System.out.println(""); // add space
-		System.out.println(descriptions[5]);
-		System.out.println(portSharpeRatio);
 	}
 
 	/**
 	 * print out the results
-	 * 
+	 *
 	 * @param args
 	 * @throws FileNotFoundException
 	 */
 	public static void main(String[] args) throws FileNotFoundException {
 
 		showFinalResults result = new showFinalResults();
-		result.writeToFile("results.txt");
-		result.writeToConsole();
+
+		System.out.println(
+				"The final constructed optimal portfolio is composed of the follwoing 10 stocks after comprehensively consideing Sharpe ratio, return on assets, and leverage ratio:");
+
+		System.out.println();
+
+		System.out.println(result.sop.getStockList());
+
+		System.out.println();
+
+		System.out.println("We simulated 1,000 times. After that the results are described as follows.");
+
+		System.out.println();
+
+		System.out.println(
+				"The capital weights assigned for the 10 stocks are shown as follows (the capital weights sum is one):");
+
+		System.out.println();
+
+		result.mc.printArray(result.sop.getFinalWeights());
+
+		System.out.println();
+
+		System.out.println("The optimal portfolio expected annual return is: "
+				+ result.sop.getFinalPortRet());
+
+		System.out.println();
+
+		System.out.println("The optimal portfolio expected annual standard deviation is: "
+				+ result.sop.getFinalPortStd());
+
+		System.out.println();
+
+		System.out.println(
+				"The optimal portfolio expected annual Sharpe ratio (this means excess return per unit of investment risk) is: "
+						+ result.sop.getFinalPortSharpeRatio());
 	}
 }

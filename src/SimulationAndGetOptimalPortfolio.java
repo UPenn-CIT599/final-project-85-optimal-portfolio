@@ -25,20 +25,32 @@ public class SimulationAndGetOptimalPortfolio {
 	/**
 	 * set simulation times and the length of randoom weights generated
 	 */
-	int simulationTimes = 1000;
+	int simulationTimes1 = 1000;
+	int simulationTimes2 = 1000;
 	int randowNumberLength = stockList.size();
 
 	/**
 	 * set variables for analysis and comparison
 	 */
 	double[] annualRet = new double[randowNumberLength];
-	double[][] weights = new double[simulationTimes][randowNumberLength];
-	double[] portRet = new double[simulationTimes];
-	double[] portStd = new double[simulationTimes];
-	double[] portSharpeRatio = new double[simulationTimes];
-	double[] sortedPortSharpeRatio = new double[simulationTimes];
-	int[] location = new int[simulationTimes];
+	double[][] weights = new double[simulationTimes1][randowNumberLength];
+	double[] portRet = new double[simulationTimes1];
+	double[] portStd = new double[simulationTimes1];
+	double[] portSharpeRatio = new double[simulationTimes1];
+	double[] sortedPortSharpeRatio = new double[simulationTimes1];
+	int[] location = new int[simulationTimes1];
 	int finalLocation;
+
+	double[][] weightsRecord = new double[simulationTimes2][randowNumberLength];
+	double[][] transformedWeightsRecord = new double[weightsRecord[1].length][weightsRecord.length];
+	double[] portRetRecord = new double[simulationTimes2];
+	double[] portStdRecord = new double[simulationTimes2];
+	double[] portSharpeRatioRecord = new double[simulationTimes2];
+
+	double[] finalWeights = new double[randowNumberLength];
+	double finalPortRet;
+	double finalPortStd;
+	double finalPortSharpeRatio;
 
 	/**
 	 * calculate portfolio return, standard deviation, and Sharpe ratio under simulation scenarios
@@ -51,27 +63,44 @@ public class SimulationAndGetOptimalPortfolio {
 			annualRet[i] = cm.calculateAnnRet(returnsData[i]);
 		}
 
-		for(int i = 0; i < simulationTimes; i++) {
-			weights[i] = cm.generateRandomNumber(randowNumberLength);
-			portRet[i] = cm.calculatePortRet(weights[i], annualRet);
-			portStd[i] = cm.calculatePortStd(weights[i], covarianceMatrix);
-			portSharpeRatio[i] = (portRet[i] - rf) / portStd[i];
-			sortedPortSharpeRatio[i] = portSharpeRatio[i];
-		}
+		for(int k = 0; k < simulationTimes2; k++) {
 
-		Arrays.sort(sortedPortSharpeRatio);
-		cm.newSort(sortedPortSharpeRatio);
+			for(int i = 0; i < simulationTimes1; i++) {
+				weights[i] = cm.generateRandomNumber(randowNumberLength);
+				portRet[i] = cm.calculatePortRet(weights[i], annualRet);
+				portStd[i] = cm.calculatePortStd(weights[i], covarianceMatrix);
+				portSharpeRatio[i] = (portRet[i] - rf) / portStd[i];
+				sortedPortSharpeRatio[i] = portSharpeRatio[i];
+			}
 
-		for(int i = 0; i < simulationTimes; i++) {
-			for(int j = 0; j < simulationTimes; j++) {
-				if(sortedPortSharpeRatio[i] == portSharpeRatio[j]) {
-					location[i] = j;
+			Arrays.sort(sortedPortSharpeRatio);
+			cm.newSort(sortedPortSharpeRatio);
+
+			for(int i = 0; i < simulationTimes1; i++) {
+				for(int j = 0; j < simulationTimes1; j++) {
+					if(sortedPortSharpeRatio[i] == portSharpeRatio[j]) {
+						location[i] = j;
+					}
 				}
 			}
+
+			finalLocation = location[0];
+			
+			weightsRecord[k] = weights[finalLocation];
+			portRetRecord[k] = portRet[finalLocation];
+			portStdRecord[k] = portStd[finalLocation];
+			portSharpeRatioRecord[k] = portSharpeRatio[finalLocation];
+
+		}
+		
+		transformedWeightsRecord = cm.transformMatrix(weightsRecord);
+		for(int i = 0; i < transformedWeightsRecord.length; i++) {
+			finalWeights[i] = cm.calculateAverage(transformedWeightsRecord[i]);
 		}
 
-		finalLocation = location[0];
-
+		finalPortRet = cm.calculateAverage(portRetRecord);
+		finalPortStd = cm.calculateAverage(portStdRecord);
+		finalPortSharpeRatio = cm.calculateAverage(portSharpeRatioRecord);
 	}
 
 	/**
@@ -90,20 +119,21 @@ public class SimulationAndGetOptimalPortfolio {
 		sop.cm.printBoard(sop.getCovarianceMatrix());
 		System.out.println();
 
-		System.out.println("Following data list shows the potfolio expected annual return under each simulation scenarios:");
+		System.out.println("Following data list shows the portfolio expected annual return under each simulation scenarios:");
 		sop.cm.printArray(sop.getPortRet());
 		System.out.println();
 
-		System.out.println("Following data list shows the potfolio expected annual standard deviation under each simulation scenarios:");
+		System.out.println("Following data list shows the portfolio expected annual standard deviation under each simulation scenarios:");
 		sop.cm.printArray(sop.getPortStd());
 		System.out.println();
 
-		System.out.println("Following data list shows the potfolio expected Sharpe ratio under each simulation scenarios:");
+		System.out.println("Following data list shows the portfolio expected Sharpe ratio under each simulation scenarios:");
 		sop.cm.printArray(sop.getPortSharpeRatio());
 		System.out.println();
 
-		System.out.println("Following data list shows the potfolio sorted expected Sharpe ratio from highest to lowest:");
+		System.out.println("Following data list shows the portfolio sorted expected Sharpe ratio from highest to lowest:");
 		sop.cm.printArray(sop.getSortedPortSharpeRatio());
+		System.out.println();
 
 	}
 
@@ -167,9 +197,45 @@ public class SimulationAndGetOptimalPortfolio {
 		return returns;
 	}
 
-	public int getSimulationTimes() {
-		return simulationTimes;
+	public int getSimulationTimes1() {
+		return simulationTimes1;
 	}
 
+	public int getSimulationTimes2() {
+		return simulationTimes2;
+	}
+
+	public double[][] getWeightsRecord() {
+		return weightsRecord;
+	}
+
+	public double[] getPortRetRecord() {
+		return portRetRecord;
+	}
+
+	public double[] getPortStdRecord() {
+		return portStdRecord;
+	}
+
+	public double[] getPortSharpeRatioRecord() {
+		return portSharpeRatioRecord;
+	}
+
+	public double[] getFinalWeights() {
+		return finalWeights;
+	}
+
+	public double getFinalPortRet() {
+		return finalPortRet;
+	}
+
+	public double getFinalPortStd() {
+		return finalPortStd;
+	}
+
+	public double getFinalPortSharpeRatio() {
+		return finalPortSharpeRatio;
+	}
+	
 }
 
