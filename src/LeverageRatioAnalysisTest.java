@@ -1,4 +1,5 @@
 import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 
@@ -81,5 +82,4 @@ class LeverageRatioAnalysisTest {
 			assertEquals(average.get(i), a.get(i));
 		}
 	}
-
 }

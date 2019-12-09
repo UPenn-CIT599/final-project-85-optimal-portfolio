@@ -90,19 +90,19 @@ public class SimulationAndGetOptimalPortfolio {
 		sop.cm.printBoard(sop.getCovarianceMatrix());
 		System.out.println();
 
-		System.out.println("Following data list shows the portfolio expected annual return under each simulation scenarios:");
+		System.out.println("Following data list shows the potfolio expected annual return under each simulation scenarios:");
 		sop.cm.printArray(sop.getPortRet());
 		System.out.println();
 
-		System.out.println("Following data list shows the portfolio expected annual standard deviation under each simulation scenarios:");
+		System.out.println("Following data list shows the potfolio expected annual standard deviation under each simulation scenarios:");
 		sop.cm.printArray(sop.getPortStd());
 		System.out.println();
 
-		System.out.println("Following data list shows the portfolio expected Sharpe ratio under each simulation scenarios:");
+		System.out.println("Following data list shows the potfolio expected Sharpe ratio under each simulation scenarios:");
 		sop.cm.printArray(sop.getPortSharpeRatio());
 		System.out.println();
 
-		System.out.println("Following data list shows the portfolio sorted expected Sharpe ratio from highest to lowest:");
+		System.out.println("Following data list shows the potfolio sorted expected Sharpe ratio from highest to lowest:");
 		sop.cm.printArray(sop.getSortedPortSharpeRatio());
 
 	}
