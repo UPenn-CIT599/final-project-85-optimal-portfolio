@@ -61,16 +61,17 @@ Description and Demo of Our Coding
 If you run this class, you will get the following results showing the top 20 stocks with highest Sharpe ratio.
 
 Please see picture in the next page.
+<img src="img/0.jpg">
 
 3. We wrote a class called “SharpeRatioAnalysisTest” to test the results we got from “SharpeRatioAnalysis” class. The test verified our results are correct.
 
 Please see following picture.
-
+<img src="img/1.jpg">
 
 4. We wrote a class called “ROAAnalysis” to generate the top 20 stocks that has higher ROA then the benchmark, S&P 500 Index. This class is built based on the basis of “DataReader” class, as we read ROA data into the class “ROAAnalysis”, and calculated and compared ROA, and then find the top 20 ROA, and the relevant stock symbols.
 
 If you run this class, you will get the following results showing the top 20 stocks with highest ROA.
-
+<img src="img/2.jpg">
 5. We wrote a class called “ROAAnalysisTest” to test the results we got from “ROAAnalysis” class. The test verified our results are correct.
 
 Please see following picture.
