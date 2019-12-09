@@ -1,0 +1,21 @@
+1. Our project name in GitHub is "final-project-85-optimal-portfolio".
+
+2. Our project is Select Good-Performing Stocks and Consutrcut Optimal Portfolio by Simulation. We select top 10 stocks based on Sharpe ratio, ROA (return on equity), and leverage ratio. We run 1,000 simulations to assign different capital weights to the top 10 chosen stocks. In the 1,000 simulation scenarios, the portfolio that has the highest Sharpe ratio is the optimal portfolio, and we found and output the relevant capital weights, optimal portfolio annual expected return, standard deviation, and Sharpe ratio.
+
+3. Work Breakdown
+
+Shengyang Xu finished downloading data from Bloomberg, and reading data into Java. Please see class "DataReader".
+
+Shengyang Xu finsihed sleceting top 20 stocks based on Sharpe ratio, and test and verify the results. Please see class "SharpeRatioAnalysis" and "SharpeRatioAnalysisTest".
+
+Seseg Baimbetova finished selecting top 20 stocks based on ROA and leverage ratio resepectively, and test and verify the results. Please see class "ROAAnalysis", "ROAAnalysisTest", "LeverageAnalysis", and "LeverageAnalysisTest".
+
+Shengyang Xu finished selecting top 10 stocks from the common stocks based on stocks list filted by Sharpe ratio, ROA, and leverage ratio. Please see class "selectStock".
+
+Seseg Baimbetova finished simulation and outputing the results. Please see class "SimulationAndGetOptimalPortfolio" and "showFinalResults". During the process, Shengyang Xu assisted Seseg Baimbetova to realize these parts.
+
+Shengyang Xu finished writing all the calculation methods needed for running the project. Please see class "CalculationMethods".
+
+4. Project Link
+https://github.com/UPenn-CIT599/final-project-85-optimal-portfolio
+

@@ -1,34 +1,18 @@
 The final constructed optimal portfolio is composed of the following 10 stocks after comprehensively considering Sharpe ratio, return on assets, and leverage ratio:
-AVGO US Equity
-AAPL US Equity
-ACN US Equity
-FTNT US Equity
-ANSS US Equity
-CERN US Equity
-ADBE US Equity
-JKHY US Equity
-FISV US Equity
-INTU US Equity
 
-After 1,000 simulations, the following results were obtained:
+[Ljava.lang.String;@3d4eac69
 
-The capital weights were assigned to the 10 stocks as follows (the sum is 1):
-0.17503779610991915
-0.13020861479137097
-0.08914820396243162
-0.03908949332366916
-0.042346877973929
-0.02037225937388649
-0.040023735615466995
-0.16723248719898995
-0.10029355692553647
-0.19624697472480024
+We simulated 1,000 times. After that the results are described as follows.
+
+The capital weights assigned for the 10 stocks are shown as follows (the capital weights sum is one):
+
+[D@42a57993
 
 The optimal portfolio expected annual return is:
-0.2568433788331237
+0.26346614471622454
 
 The optimal portfolio expected annual standard deviation is:
-0.1487147571819625
+0.14776030041344312
 
 The optimal portfolio expected annual Sharpe ratio (excess return per unit of investment risk) is:
-1.6673697675214736
+1.7229611423383386
