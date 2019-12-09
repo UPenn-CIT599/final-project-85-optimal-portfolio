@@ -91,6 +91,8 @@ If you run this class, you will get the following result showing the top 10 chos
 
 9. Then after we get the chosen top 10 stocks, we need to get their returns data and their covariance matrix for calculating portfolio expected annual return, standard deviation, and Sharpe ratio. We realized all of these things in the class “SimulationAndGetOptimalPortfolio”.
 
+In this class, we also record optimal portfolio expected annual expected return, standard deviation, Sharpe ratio, and optimal weights each time we simulated. And we will re-simulate again to get another optimal portfolio expected annual expected return, standard deviation, Sharpe ratio, and optimal weights. Then, by calculating the average, we get the final optimal portfolio optimal weights, expected annual return, standard deviation, and Sharpe ratio. By this way, the obtained optimal weights, expected annual return, standard deviation, and Sharpe ratio are much more accurate and precise.
+
 If you run this class, you will get the following result showing the top 10 chosen stocks returns matrix, covariance matrix, portfolio expected annual return under each simulation scenarios, portfolio expected annual standard deviation under each simulation scenarios, portfolio expected Sharpe ratio under each simulation scenarios, and portfolio sorted expected Sharpe ratio from highest to lowest.
 
 10. Finally, in the class “showFinalResults”, we output the results.
