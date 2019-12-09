@@ -75,30 +75,34 @@ If you run this class, you will get the following results showing the top 20 sto
 5. We wrote a class called “ROAAnalysisTest” to test the results we got from “ROAAnalysis” class. The test verified our results are correct.
 
 Please see following picture.
-
+<img src="img/3.jpg">
 
 6. We wrote a class called “LeverageRatioAnalysis” to generate the top 20 stocks that has lower leverage ratio then the benchmark, S&P 500 Index. This class is built based on the basis of “DataReader” class, as we read leverage ratio data into the class “LeverageRatioAnalysis”, and calculated and compared leverage, and then find the bottom 20 leverage ratio, and the relevant stock symbols.
 
 If you run this class, you will get the following results showing the top 20 stocks with lowest leverage ratio.
+<img src="img/4.jpg">
 
 7. We wrote a class called “LeverageRatioAnalysisTest” to test the results we got from “LeverageRatioAnalysis” class. The test verified our results are correct.
 
 Please see following picture.
-
+<img src="img/5.jpg">
 
 8. Then, in  the class “selectStock”, we find the common top 10 stocks by filtering in the stocks list obtained from “SharpeRatioAnalysis”, “ROAAnalysis”, and “LeverageRatioAnalysis”. This class “selectStock” is based on the results from class “SharpeRatioAnalysis”, “ROAAnalysis”, and “LeverageRatioAnalysis”.
 
 If you run this class, you will get the following result showing the top 10 chosen stocks.
-
+<img src="img/6.jpg">
 9. Then after we get the chosen top 10 stocks, we need to get their returns data and their covariance matrix for calculating portfolio expected annual return, standard deviation, and Sharpe ratio. We realized all of these things in the class “SimulationAndGetOptimalPortfolio”.
 
 In this class, we also record optimal portfolio expected annual expected return, standard deviation, Sharpe ratio, and optimal weights each time we simulated. And we will re-simulate again to get another optimal portfolio expected annual expected return, standard deviation, Sharpe ratio, and optimal weights. Then, by calculating the average, we get the final optimal portfolio optimal weights, expected annual return, standard deviation, and Sharpe ratio. By this way, the obtained optimal weights, expected annual return, standard deviation, and Sharpe ratio are much more accurate and precise.
 
 If you run this class, you will get the following result showing the top 10 chosen stocks returns matrix, covariance matrix, portfolio expected annual return under each simulation scenarios, portfolio expected annual standard deviation under each simulation scenarios, portfolio expected Sharpe ratio under each simulation scenarios, and portfolio sorted expected Sharpe ratio from highest to lowest.
+<img src="img/7.jpg">
 
 10. Finally, in the class “showFinalResults”, we output the results.
 
 If you run this class, you will get the following results showing the optimal portfolio underlying 10 stocks, optimal capital weights assigned to the 10 stocks, optimal portfolio expected annual return, optimal portfolio expected annual standard deviation, and optimal portfolio expected annual Sharpe ratio.
+<img src="img/8.jpg">
+
 11. Illustration of class “CalculationMethods”
 
 In order to support all the calculations of the project, we set up a class “CalculationMethods”, in which we wrote all the methods needed for running the project.
