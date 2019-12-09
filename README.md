@@ -2,7 +2,6 @@
 final-project-85-optimal-portfolio created by GitHub Classroom
 This README file provide detailed information of the project we did. We wrote the detailed illustration based on following several aspects.
 
-* I attached pictures in this file, but they are not visiable here. So please also review README.word file, and we can pictures I attached.
 
 1. Team Members
 2. Project Overview.
